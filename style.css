@@ -1,3 +1,4 @@
+
 /* Custom Fonts */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
@@ -141,4 +142,118 @@ nav {
 /* Specific styling for the 'popular' pricing card to maintain its unique hover effect */
 .border.border-bone.p-8:hover {
     transform: translateY(-12px) !important;
+}
+/* --- THEME SLIDER --- */
+.slider-container {
+  width: 180px;
+  height: 4px;
+  background: rgba(249, 246, 240, 0.2);
+  border-radius: 2px;
+  position: relative;
+  cursor: pointer;
+  margin: 0 auto;
+  overflow: visible;
+}
+
+#theme-icon {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translate(-50%, -50%);
+  width: 32px;
+  height: 32px;
+  transition: left 0.2s ease;
+  z-index: 3;
+}
+
+#theme-icon .sun,
+#theme-icon .moon {
+  opacity: 0;
+  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+#theme-icon .sun {
+  opacity: 0;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+}
+
+#theme-icon .moon {
+  opacity: 1;
+  filter: drop-shadow(0 0 6px rgba(200, 200, 255, 0.4));
+}
+
+/* --- LIGHT THEME --- */
+body.light-theme {
+  background: #f5f7fa;
+  color: #333; /* Dark text for readability */
+}
+
+/* Ensure all text is readable */
+body.light-theme h1,
+body.light-theme h2,
+body.light-theme h3,
+body.light-theme h4,
+body.light-theme h5,
+body.light-theme h6,
+body.light-theme p,
+body.light-theme span,
+body.light-theme li,
+body.light-theme a {
+  color: #333 !important;
+}
+
+/* Update slider track for visibility in light mode */
+body.light-theme .slider-container {
+  background: rgba(0, 0, 0, 0.2);
+}
+
+/* Show Sun, hide Moon */
+body.light-theme #theme-icon .sun {
+  opacity: 1;
+}
+
+body.light-theme #theme-icon .moon {
+  opacity: 0;
+}
+
+/* Hide stars in light mode */
+body.light-theme .stars {
+  opacity: 0;
+}
+
+/* Button styles in light mode */
+body.light-theme button,
+body.light-theme .button {
+  background: #1a1a1a !important;
+  color: #f9f6f0 !important;
+  border: 1px solid #1a1a1a;
+}
+
+body.light-theme button:hover,
+body.light-theme .button:hover {
+  background: #333 !important;
+}
+
+/* Border visibility in light mode */
+body.light-theme .border-bone,
+body.light-theme .border-bone\/10,
+body.light-theme .border-bone\/20 {
+  border-color: #333 !important;
+}
+
+/* Pricing card borders */
+body.light-theme .border {
+  border-color: #333 !important;
+}
+
+/* Social links */
+body.light-theme .text-bone\/70,
+body.light-theme .text-bone\/60,
+body.light-theme .text-bone\/40 {
+  color: #555 !important;
+}
+
+/* Hover effects */
+body.light-theme .hover\:text-bone:hover {
+  color: #1a1a1a !important;
 }
