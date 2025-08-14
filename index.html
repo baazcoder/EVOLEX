@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Evolex - Digital Agency</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'bone': '#F9F6F0',
+                        'matte-black': '#1A1A1A'
+                    },
+                    fontFamily: {
+                        'sans': ['Inter', 'system-ui', 'sans-serif']
+                    }
+                }
+            }
+        }
+    </script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+
+<body class="bg-matte-black text-bone font-sans relative overflow-x-hidden"
+    style="background-image: radial-gradient(circle at 1px 1px, rgba(249, 246, 240, 0.05) 1px, transparent 0); background-size: 40px 40px;">
+    <!-- Grain Animation Overlay -->
+    <div class="fixed inset-0 pointer-events-none z-10 opacity-20">
+        <div class="grain-animation w-full h-full"></div>
+    </div>
+    
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-matte-black/90 backdrop-blur-sm z-50 border-b border-bone/10">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold tracking-tight">EVOLEX</div>
+                <div class="hidden md:flex space-x-8">
+                    <a href="#services" class="text-sm font-medium hover:text-bone/70 transition-colors">Services</a>
+                    <a href="#work" class="text-sm font-medium hover:text-bone/70 transition-colors">Work</a>
+                    <a href="#pricing" class="text-sm font-medium hover:text-bone/70 transition-colors">Pricing</a>
+                    <a href="#contact" class="text-sm font-medium hover:text-bone/70 transition-colors">Contact</a>
+                </div>
+                <button class="md:hidden">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M4 6h16M4 12h16M4 18h16"></path>
+                    </svg>
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div id="ripple-bg" class="absolute top-0 left-0 w-full h-full -z-10"></div>
+    <section class="min-h-screen flex items-center justify-center px-6 pt-20">
+        <div class="max-w-4xl mx-auto text-center">
+            <h1 class="text-6xl md:text-8xl font-bold tracking-tight mb-8 leading-none evolex-fade-in"
+                style="text-shadow: 0 0 10px rgba(249, 246, 240, 0.3), 0 0 20px rgba(249, 246, 240, 0.2), 0 0 30px rgba(249, 246, 240, 0.1);">
+                EVOLEX
+            </h1>
+            <p class="text-xl md:text-2xl font-light text-bone/70 mb-12 max-w-2xl mx-auto leading-relaxed">
+                Minimal design meets powerful functionality. We help brands evolve through thoughtful digital solutions.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                    class="bg-bone text-matte-black px-8 py-4 text-sm font-medium tracking-wide hover:bg-bone/90 transition-colors">
+                    VIEW OUR WORK
+                </button>
+                <button
+                    class="border border-bone text-bone px-8 py-4 text-sm font-medium tracking-wide hover:bg-bone hover:text-matte-black transition-colors">
+                    START A PROJECT
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-light mb-6">What we do</h2>
+                    <p class="text-lg text-bone/70 leading-relaxed">
+                        We specialize in creating digital experiences that are both beautiful and functional,
+                        helping brands connect with their audience in meaningful ways.
+                    </p>
+                </div>
+                <div class="space-y-12">
+                    <div class="border-b border-bone/10 pb-8">
+                        <h3 class="text-xl font-medium mb-3">Brand Identity</h3>
+                        <p class="text-bone/70">Strategic brand development and visual identity systems that resonate.
+                        </p>
+                    </div>
+                    <div class="border-b border-bone/10 pb-8">
+                        <h3 class="text-xl font-medium mb-3">Web Design</h3>
+                        <p class="text-bone/70">Responsive websites that combine aesthetic appeal with seamless
+                            functionality.</p>
+                    </div>
+                    <div class="border-b border-bone/10 pb-8">
+                        <h3 class="text-xl font-medium mb-3">Digital Strategy</h3>
+                        <p class="text-bone/70">Comprehensive digital solutions tailored to your business objectives.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Featured Work -->
+    <section id="work" class="py-24 px-6 relative overflow-hidden"
+        style="background: linear-gradient(135deg, #282727 0%, #383838 25%, #262626 50%, #4F4F4F 75%, #282828 100%);">
+        <div class="absolute inset-0 opacity-30"
+            style="background: linear-gradient(45deg, transparent 30%, rgba(68, 68, 68, 0.3) 50%, transparent 70%), linear-gradient(-45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%); background-size: 20px 20px; animation: metallic-shine 3s ease-in-out infinite;">
+        </div>
+        <div class="gliding-shine-overlay"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <h2 class="text-4xl md:text-5xl font-light mb-16 text-center text-bone"
+                style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">Selected work</h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group cursor-pointer">
+                    <div class="aspect-square bg-gradient-to-br from-gray-300 to-gray-500 mb-4 group-hover:from-gray-200 group-hover:to-gray-400 transition-all duration-300 shadow-lg group-hover:shadow-xl"
+                        style="background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.2) 75%), linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.2) 75%); background-size: 4px 4px; background-position: 0 0, 2px 2px;">
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 text-bone">Project Alpha</h3>
+                    <p class="text-bone/70 text-sm">Brand Identity, Web Design</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="aspect-square bg-gradient-to-br from-gray-300 to-gray-500 mb-4 group-hover:from-gray-200 group-hover:to-gray-400 transition-all duration-300 shadow-lg group-hover:shadow-xl"
+                        style="background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.2) 75%), linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.2) 75%); background-size: 4px 4px; background-position: 0 0, 2px 2px;">
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 text-bone">Project Beta</h3>
+                    <p class="text-bone/70 text-sm">Digital Strategy, Development</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div class="aspect-square bg-gradient-to-br from-gray-300 to-gray-500 mb-4 group-hover:from-gray-200 group-hover:to-gray-400 transition-all duration-300 shadow-lg group-hover:shadow-xl"
+                        style="background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.2) 75%), linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.2) 75%); background-size: 4px 4px; background-position: 0 0, 2px 2px;">
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 text-bone">Project Gamma</h3>
+                    <p class="text-bone/70 text-sm">Web Design, User Experience</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section id="pricing" class="py-24 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-light mb-6">Pricing</h2>
+                <p class="text-xl text-bone/70 max-w-2xl mx-auto">
+                    Transparent pricing for every stage of your digital journey
+                </p>
+            </div>
+
+            <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+                <!-- Starter Package -->
+                <div
+                    class="border border-bone/20 p-8 hover:border-bone/40 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-out white-shadow white-shadow-hover">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-medium mb-2">Starter</h3>
+                        <p class="text-bone/70 mb-6">Perfect for small businesses and startups</p>
+                        <div class="text-4xl font-light mb-2">$2,500</div>
+                        <p class="text-sm text-bone/60">One-time project</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Brand identity design</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">5-page responsive website</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Basic SEO optimization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">2 rounds of revisions</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full border border-bone text-bone px-6 py-3 text-sm font-medium tracking-wide hover:bg-bone hover:text-matte-black transition-colors">
+                        GET STARTED
+                    </button>
+                </div>
+
+                <!-- Professional Package -->
+                <div
+                    class="border border-bone p-8 bg-bone/5 relative hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 ease-out hover:bg-bone/10 white-shadow white-shadow-hover">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <span
+                            class="bg-bone text-matte-black px-4 py-1 text-xs font-medium tracking-wide">POPULAR</span>
+                    </div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-medium mb-2">Professional</h3>
+                        <p class="text-bone/70 mb-6">Ideal for growing businesses</p>
+                        <div class="text-4xl font-light mb-2">$5,500</div>
+                        <p class="text-sm text-bone/60">One-time project</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Complete brand system</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">10-page responsive website</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Advanced SEO & analytics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Content management system</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">3 rounds of revisions</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full bg-bone text-matte-black px-6 py-3 text-sm font-medium tracking-wide hover:bg-bone/90 transition-colors">
+                        GET STARTED
+                    </button>
+                </div>
+
+                <!-- Enterprise Package -->
+                <div
+                    class="border border-bone/20 p-8 hover:border-bone/40 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-out white-shadow white-shadow-hover">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-medium mb-2">Enterprise</h3>
+                        <p class="text-bone/70 mb-6">For established companies</p>
+                        <div class="text-4xl font-light mb-2">$12,000</div>
+                        <p class="text-sm text-bone/60">One-time project</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Full digital strategy</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Custom web application</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">E-commerce integration</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Advanced analytics dashboard</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Unlimited revisions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">3 months support</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full border border-bone text-bone px-6 py-3 text-sm font-medium tracking-wide hover:bg-bone hover:text-matte-black transition-colors">
+                        GET STARTED
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-24 px-6">
+        <div class="max-w-4xl mx-auto text-center">
+            <h2 class="text-4xl md:text-5xl font-light mb-8">Let's work together</h2>
+            <p class="text-xl text-bone/70 mb-12 max-w-2xl mx-auto">
+                Ready to evolve your digital presence? We'd love to hear about your project.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-8 justify-center items-center">
+                <a href="mailto:hello@evolex.com" class="text-lg font-medium hover:text-bone/70 transition-colors">
+                    hello@evolex.com
+                </a>
+                <div class="w-px h-6 bg-bone/20 hidden sm:block"></div>
+                <a href="tel:+1234567890" class="text-lg font-medium hover:text-bone/70 transition-colors">
+                    +1 (234) 567-890
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="border-t border-bone/10 py-12 px-6">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="text-2xl font-bold tracking-tight mb-4 md:mb-0">EVOLEX</div>
+            <div class="flex space-x-6 text-sm text-bone/70">
+                <a href="#" class="hover:text-bone transition-colors">Privacy</a>
+                <a href="#" class="hover:text-bone transition-colors">Terms</a>
+                <a href="#" class="hover:text-bone transition-colors">LinkedIn</a>
+                <a href="#" class="hover:text-bone transition-colors">Instagram</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.querySelector('button');
+        mobileMenuButton.addEventListener('click', function () {
+            // Simple mobile menu toggle functionality
+            alert('Mobile menu would open here');
+        });
+        let scene, camera, renderer, uniforms;
+
+        function init() {
+            const container = document.getElementById("ripple-bg");
+            scene = new THREE.Scene();
+            camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
+
+            const geometry = new THREE.PlaneGeometry(2, 2);
+
+            uniforms = {
+                u_time: { value: 0.0 },
+                u_resolution: { value: new THREE.Vector2(window.innerWidth, window.innerHeight) }
+            };
+
+            const material = new THREE.ShaderMaterial({
+                uniforms: uniforms,
+                fragmentShader: `
+                precision highp float;
+                uniform vec2 u_resolution;
+                uniform float u_time;
+
+                void main() {
+                    vec2 uv = gl_FragCoord.xy / u_resolution.xy;
+                    vec2 center = uv - 0.5;
+                    float len = length(center);
+
+                    // Ripple pattern
+                    float ripple = 0.03 * sin(40.0 * len - u_time * 4.0);
+
+                    // Color shifting
+                    float r = 0.5 + 0.5 * cos(6.2831 * ripple + u_time * 0.5);
+                    float g = 0.5 + 0.5 * sin(6.2831 * ripple + u_time * 0.3);
+                    float b = 0.5 + 0.5 * cos(6.2831 * ripple + u_time * 0.7);
+
+                    gl_FragColor = vec4(r, g, b, 0.4); // 0.4 opacity for blending
+                }
+            `,
+                transparent: true
+            });
+
+            const mesh = new THREE.Mesh(geometry, material);
+            scene.add(mesh);
+
+            renderer = new THREE.WebGLRenderer({ alpha: true });
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            container.appendChild(renderer.domElement);
+        }
+
+        function animate() {
+            requestAnimationFrame(animate);
+            uniforms.u_time.value += 0.01;
+            renderer.render(scene, camera);
+        }
+
+        window.addEventListener('resize', () => {
+            uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight);
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        init();
+        animate();
+    </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'96f10011a393338e',t:'MTc1NTE4MDI1NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
