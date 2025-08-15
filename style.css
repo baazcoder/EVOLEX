@@ -21,6 +21,7 @@ body {
 
 /* === Nav === */
 nav {
+    -webkit-backdrop-filter: blur(5px); /* Safari support */
     backdrop-filter: blur(5px);
 }
 
@@ -169,6 +170,7 @@ nav {
   cursor: pointer;
   padding: 0;
   margin: 0;
+  -webkit-backdrop-filter: blur(5px); /* Safari support */
   backdrop-filter: blur(5px);
   display: flex;
   align-items: center;
@@ -324,4 +326,25 @@ body.light-theme .bg-bone.text-matte-black:hover {
 body.light-theme .border.border-bone.text-bone:hover {
   background: #1a1a1a !important;
   color: var(--bone) !important;
+}
+
+#work .max-w-7xl {
+  margin-top: -15px; /* Adjust value as needed */
+}
+
+/* Light theme for #work section */
+body.light-theme #work {
+  background: linear-gradient(135deg, #bfc2c7 0%, #bfc2c7 100%);
+}
+
+body.light-theme #work h2,
+body.light-theme #work h3,
+body.light-theme #work p {
+  color: #222 !important;
+  text-shadow: none;
+}
+
+body.light-theme #work .group .aspect-square {
+  background: linear-gradient(135deg, #e0e0e0 0%, #f5f5f5 100%);
+  box-shadow: 0 2px 8px rgba(0,0,0,0.08);
 }
