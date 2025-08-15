@@ -21,7 +21,7 @@ body {
 
 /* === Nav === */
 nav {
-    backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 
 /* === Animations and Overlays === */
@@ -36,44 +36,104 @@ nav {
 }
 
 @keyframes grain {
-  0% { transform: translate(0, 0); }
-  10% { transform: translate(-1px, -1px); }
-  20% { transform: translate(1px, 0); }
-  30% { transform: translate(0, 1px); }
-  40% { transform: translate(-1px, 0); }
-  50% { transform: translate(1px, 1px); }
-  60% { transform: translate(0, -1px); }
-  70% { transform: translate(-1px, 1px); }
-  80% { transform: translate(1px, -1px); }
-  90% { transform: translate(0, 0); }
-  100% { transform: translate(-1px, -1px); }
+  0% {
+    transform: translate(0, 0);
+  }
+
+  10% {
+    transform: translate(-1px, -1px);
+  }
+
+  20% {
+    transform: translate(1px, 0);
+  }
+
+  30% {
+    transform: translate(0, 1px);
+  }
+
+  40% {
+    transform: translate(-1px, 0);
+  }
+
+  50% {
+    transform: translate(1px, 1px);
+  }
+
+  60% {
+    transform: translate(0, -1px);
+  }
+
+  70% {
+    transform: translate(-1px, 1px);
+  }
+
+  80% {
+    transform: translate(1px, -1px);
+  }
+
+  90% {
+    transform: translate(0, 0);
+  }
+
+  100% {
+    transform: translate(-1px, -1px);
+  }
 }
 
 .evolex-fade-in {
   opacity: 0;
   animation: fadeInUp 1.5s ease-out 0.5s forwards;
-  text-shadow: 
+  text-shadow:
     0 0 10px rgba(249, 246, 240, 0.3),
     0 0 20px rgba(249, 246, 240, 0.2),
     0 0 30px rgba(249, 246, 240, 0.1);
 }
 
 @keyframes fadeInUp {
-  0% { opacity: 0; transform: translateY(30px); }
-  100% { opacity: 1; transform: translateY(0); }
+  0% {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 @keyframes metallic-shine {
-  0% { background-position: -100px -100px, 100px 100px; }
-  50% { background-position: 100px 100px, -100px -100px; }
-  100% { background-position: -100px -100px, 100px 100px; }
+  0% {
+    background-position: -100px -100px, 100px 100px;
+  }
+
+  50% {
+    background-position: 100px 100px, -100px -100px;
+  }
+
+  100% {
+    background-position: -100px -100px, 100px 100px;
+  }
 }
 
 @keyframes gliding-shine {
-  0% { transform: translateX(-150%) rotate(25deg); opacity: 0; }
-  10% { opacity: 1; }
-  90% { opacity: 1; }
-  100% { transform: translateX(150vw) rotate(25deg); opacity: 0; }
+  0% {
+    transform: translateX(-150%) rotate(25deg);
+    opacity: 0;
+  }
+
+  10% {
+    opacity: 1;
+  }
+
+  90% {
+    opacity: 1;
+  }
+
+  100% {
+    transform: translateX(150vw) rotate(25deg);
+    opacity: 0;
+  }
 }
 
 .gliding-shine-overlay {
@@ -82,14 +142,12 @@ nav {
   left: -100%;
   width: 100%;
   height: 200%;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.05) 20%,
-    rgba(255, 255, 255, 0.15) 50%,
-    rgba(255, 255, 255, 0.05) 80%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.05) 20%,
+      rgba(255, 255, 255, 0.15) 50%,
+      rgba(255, 255, 255, 0.05) 80%,
+      transparent 100%);
   animation: gliding-shine 5s ease-in-out infinite;
   pointer-events: none;
   z-index: 5;
@@ -103,14 +161,12 @@ nav {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(
-    90deg,
-    transparent 0%,
-    rgba(255, 255, 255, 0.08) 30%,
-    rgba(255, 255, 255, 0.2) 50%,
-    rgba(255, 255, 255, 0.08) 70%,
-    transparent 100%
-  );
+  background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(255, 255, 255, 0.08) 30%,
+      rgba(255, 255, 255, 0.2) 50%,
+      rgba(255, 255, 255, 0.08) 70%,
+      transparent 100%);
   transform: skewX(-20deg);
 }
 
@@ -119,23 +175,23 @@ nav {
   background: linear-gradient(135deg, #282727 0%, #383838 25%, #262626 50%, #4f4f4f 75%, #282828 100%);
 }
 
-#work > .absolute {
-  background: 
+#work>.absolute {
+  background:
     linear-gradient(45deg, transparent 30%, rgba(68, 68, 68, 0.3) 50%, transparent 70%),
-    linear-gradient(-45deg, transparent 20%, rgba(255,255,255,0.2) 50%, transparent 70%);
+    linear-gradient(-45deg, transparent 20%, rgba(255, 255, 255, 0.2) 50%, transparent 70%);
   background-size: 20px 20px;
   animation: metallic-shine 3s ease-in-out infinite;
 }
 
 #work h2 {
-  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .work-item-bg,
 .group .aspect-square {
-  background-image: 
-    linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.2) 75%),
-    linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.2) 75%);
+  background-image:
+    linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.2) 75%),
+    linear-gradient(45deg, rgba(255, 255, 255, 0.2) 25%, transparent 25%, transparent 75%, rgba(255, 255, 255, 0.2) 75%);
   background-size: 4px 4px;
   background-position: 0 0, 2px 2px;
 }
@@ -154,6 +210,7 @@ nav {
 
 .border.border-bone.p-8:hover,
 .border.border-bone\/20:hover {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
   transform: translateY(-8px);
 }
 
@@ -173,7 +230,7 @@ nav {
   display: flex;
   align-items: center;
   justify-content: flex-start;
-  transition: 
+  transition:
     background 0.3s ease,
     justify-content 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
@@ -206,7 +263,8 @@ body.light-theme .theme-toggle-btn {
   z-index: 2;
 }
 
-.sun, .moon {
+.sun,
+.moon {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -218,7 +276,8 @@ body.light-theme .theme-toggle-btn {
   height: 18px;
 }
 
-.sun svg, .moon svg {
+.sun svg,
+.moon svg {
   width: 100%;
   height: 100%;
   fill: none;

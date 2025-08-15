@@ -1,370 +1,352 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
+
+<head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Evolex - Digital Agency</title>
     <link rel="stylesheet" href="style.css" />
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
-      tailwind.config = {
-        theme: {
-          extend: {
-            colors: {
-              bone: "#F9F6F0",
-              "matte-black": "#1A1A1A",
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bone: "#F9F6F0",
+                        "matte-black": "#1A1A1A",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "system-ui", "sans-serif"],
+                    },
+                },
             },
-            fontFamily: {
-              sans: ["Inter", "system-ui", "sans-serif"],
-            },
-          },
-        },
-      };
+        };
     </script>
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
-      rel="stylesheet"
-    />
-  </head>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+</head>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r152/three.min.js"></script>
 
-  <body
-    class="bg-matte-black text-bone font-sans relative overflow-x-hidden custom-body-bg"
-  >
+<body class="bg-matte-black text-bone font-sans relative overflow-x-hidden custom-body-bg">
     <!-- Grain Animation Overlay -->
     <div class="fixed inset-0 pointer-events-none z-10 opacity-20">
-      <div class="grain-animation w-full h-full"></div>
+        <div class="grain-animation w-full h-full"></div>
     </div>
 
     <!-- Navigation -->
-    <nav
-      class="fixed top-0 w-full bg-matte-black/90 backdrop-blur-sm z-50 border-b border-bone/10"
-    >
-      <div class="max-w-7xl mx-auto px-6 py-4">
-        <div class="flex justify-between items-center">
-          <div class="text-2xl font-bold tracking-tight">EVOLEX</div>
+    <nav class="fixed top-0 w-full bg-matte-black/90 backdrop-blur-sm z-50 border-b border-bone/10">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold tracking-tight">EVOLEX</div>
 
-          <!-- Theme Toggle Button -->
-          <div class="flex items-center space-x-6">
-            <button
-              id="theme-toggle"
-              class="theme-toggle-btn"
-              aria-label="Toggle light and dark mode"
-            >
-              <div class="theme-icon">
-                <!-- Sun Icon -->
-                <svg class="sun" viewBox="0 0 24 24">
-                  <circle cx="12" cy="12" r="5" />
-                  <line x1="12" y1="1" x2="12" y2="4" />
-                  <line x1="12" y1="20" x2="12" y2="23" />
-                  <line x1="4" y1="12" x2="1" y2="12" />
-                  <line x1="23" y1="12" x2="20" y2="12" />
-                  <line x1="19" y1="19" x2="16.5" y2="16.5" />
-                  <line x1="7.5" y1="7.5" x2="5" y2="5" />
-                  <line x1="19" y1="5" x2="16.5" y2="7.5" />
-                  <line x1="7.5" y1="16.5" x2="5" y2="19" />
-                </svg>
-                <!-- Moon Icon -->
-                <svg class="moon" viewBox="0 0 24 24">
-                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
-                </svg>
-              </div>
-            </button>
+                <!-- Theme Toggle Button -->
+                <div class="flex items-center space-x-6">
+                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light and dark mode">
+                        <div class="theme-icon">
+                            <!-- Sun Icon -->
+                            <svg class="sun" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="5" />
+                                <line x1="12" y1="1" x2="12" y2="4" />
+                                <line x1="12" y1="20" x2="12" y2="23" />
+                                <line x1="4" y1="12" x2="1" y2="12" />
+                                <line x1="23" y1="12" x2="20" y2="12" />
+                                <line x1="19" y1="19" x2="16.5" y2="16.5" />
+                                <line x1="7.5" y1="7.5" x2="5" y2="5" />
+                                <line x1="19" y1="5" x2="16.5" y2="7.5" />
+                                <line x1="7.5" y1="16.5" x2="5" y2="19" />
+                            </svg>
+                            <!-- Moon Icon -->
+                            <svg class="moon" viewBox="0 0 24 24">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                            </svg>
+                        </div>
+                    </button>
 
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex space-x-8">
-              <a
-                href="#services"
-                class="text-sm font-medium hover:text-bone/70 transition-colors"
-                >Services</a
-              >
-              <a
-                href="#work"
-                class="text-sm font-medium hover:text-bone/70 transition-colors"
-                >Work</a
-              >
-              <a
-                href="#pricing"
-                class="text-sm font-medium hover:text-bone/70 transition-colors"
-                >Pricing</a
-              >
-              <a
-                href="#contact"
-                class="text-sm font-medium hover:text-bone/70 transition-colors"
-                >Contact</a
-              >
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#services"
+                            class="text-sm font-medium hover:text-bone/70 transition-colors">Services</a>
+                        <a href="#work" class="text-sm font-medium hover:text-bone/70 transition-colors">Work</a>
+                        <a href="#pricing" class="text-sm font-medium hover:text-bone/70 transition-colors">Pricing</a>
+                        <a href="#contact" class="text-sm font-medium hover:text-bone/70 transition-colors">Contact</a>
+                    </div>
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden" aria-label="Open mobile menu" title="Open mobile menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
             </div>
-            <!-- Mobile Menu Button -->
-            <button class="md:hidden" aria-label="Open mobile menu" title="Open mobile menu">
-              <svg
-                class="w-6 h-6"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  stroke-width="2"
-                  d="M4 6h16M4 12h16M4 18h16"
-                ></path>
-              </svg>
-            </button>
-          </div>
         </div>
-      </div>
     </nav>
 
     <!-- Hero Section -->
     <div id="ripple-bg" class="absolute top-0 left-0 w-full h-full -z-10"></div>
     <section class="min-h-screen flex items-center justify-center px-6 pt-20">
-      <div class="max-w-4xl mx-auto text-center">
-        <h1
-          class="text-6xl md:text-8xl font-bold tracking-tight mb-8 leading-none evolex-fade-in evolex-title-shadow"
-        >
-          EVOLEX
-        </h1>
-        <p
-          class="text-xl md:text-2xl font-light text-bone/70 mb-12 max-w-2xl mx-auto leading-relaxed"
-        >
-          Minimal design meets powerful functionality. We help brands evolve
-          through thoughtful digital solutions.
-        </p>
-        <div class="flex flex-col sm:flex-row gap-4 justify-center">
-          <button
-            class="bg-bone text-matte-black px-8 py-4 text-sm font-medium tracking-wide hover:bg-bone/90 transition-colors"
-          >
-            VIEW OUR WORK
-          </button>
-          <button
-            class="border border-bone text-bone px-8 py-4 text-sm font-medium tracking-wide hover:bg-bone hover:text-matte-black transition-colors"
-          >
-            START A PROJECT
-          </button>
+        <div class="max-w-4xl mx-auto text-center">
+            <h1
+                class="text-6xl md:text-8xl font-bold tracking-tight mb-8 leading-none evolex-fade-in evolex-title-shadow">
+                EVOLEX
+            </h1>
+            <p class="text-xl md:text-2xl font-light text-bone/70 mb-12 max-w-2xl mx-auto leading-relaxed">
+                Minimal design meets powerful functionality. We help brands evolve
+                through thoughtful digital solutions.
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center">
+                <button
+                    class="bg-bone text-matte-black px-8 py-4 text-sm font-medium tracking-wide hover:bg-bone/90 transition-colors">
+                    VIEW OUR WORK
+                </button>
+                <button
+                    class="border border-bone text-bone px-8 py-4 text-sm font-medium tracking-wide hover:bg-bone hover:text-matte-black transition-colors">
+                    START A PROJECT
+                </button>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Services Section -->
     <section id="services" class="py-24 px-6">
-      <div class="max-w-7xl mx-auto">
-        <div class="grid md:grid-cols-2 gap-16 items-start">
-          <div>
-            <h2 class="text-4xl md:text-5xl font-light mb-6">What we do</h2>
-            <p class="text-lg text-bone/70 leading-relaxed">
-              We specialize in creating digital experiences that are both
-              beautiful and functional, helping brands connect with their
-              audience in meaningful ways.
-            </p>
-          </div>
-          <div class="space-y-12">
-            <div class="border-b border-bone/10 pb-8">
-              <h3 class="text-xl font-medium mb-3">Brand Identity</h3>
-              <p class="text-bone/70">
-                Strategic brand development and visual identity systems that
-                resonate.
-              </p>
+        <div class="max-w-7xl mx-auto">
+            <div class="grid md:grid-cols-2 gap-16 items-start">
+                <div>
+                    <h2 class="text-4xl md:text-5xl font-light mb-6">What we do</h2>
+                    <p class="text-lg text-bone/70 leading-relaxed">
+                        We specialize in creating digital experiences that are both
+                        beautiful and functional, helping brands connect with their
+                        audience in meaningful ways.
+                    </p>
+                </div>
+                <div class="space-y-12">
+                    <div class="border-b border-bone/10 pb-8">
+                        <h3 class="text-xl font-medium mb-3">Brand Identity</h3>
+                        <p class="text-bone/70">
+                            Strategic brand development and visual identity systems that
+                            resonate.
+                        </p>
+                    </div>
+                    <div class="border-b border-bone/10 pb-8">
+                        <h3 class="text-xl font-medium mb-3">Web Design</h3>
+                        <p class="text-bone/70">
+                            Responsive websites that combine aesthetic appeal with seamless
+                            functionality.
+                        </p>
+                    </div>
+                    <div class="border-b border-bone/10 pb-8">
+                        <h3 class="text-xl font-medium mb-3">Digital Strategy</h3>
+                        <p class="text-bone/70">
+                            Comprehensive digital solutions tailored to your business
+                            objectives.
+                        </p>
+                    </div>
+                </div>
             </div>
-            <div class="border-b border-bone/10 pb-8">
-              <h3 class="text-xl font-medium mb-3">Web Design</h3>
-              <p class="text-bone/70">
-                Responsive websites that combine aesthetic appeal with seamless
-                functionality.
-              </p>
-            </div>
-            <div class="border-b border-bone/10 pb-8">
-              <h3 class="text-xl font-medium mb-3">Digital Strategy</h3>
-              <p class="text-bone/70">
-                Comprehensive digital solutions tailored to your business
-                objectives.
-              </p>
-            </div>
-          </div>
         </div>
-      </div>
     </section>
 
     <!-- Featured Work -->
-    <section
-      id="work"
-      class="py-24 px-6 relative overflow-hidden featured-work-bg"
-    >
-      <div
-        class="absolute inset-0 opacity-30 metallic-shine-bg"
-      ></div>
-      <div class="gliding-shine-overlay"></div>
-      <div class="max-w-7xl mx-auto relative z-10">
-        <h2
-          class="text-4xl md:text-5xl font-light mb-16 text-center text-bone evolex-text-shadow"
-        >
-          Selected work
-        </h2>
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          <div class="group cursor-pointer">
-            <div
-              class="aspect-square bg-gradient-to-br from-gray-300 to-gray-500 mb-4 group-hover:from-gray-200 group-hover:to-gray-400 transition-all duration-300 shadow-lg group-hover:shadow-xl featured-work-thumb"
-            ></div>
-            <h3 class="text-lg font-medium mb-2 text-bone">Project Alpha</h3>
-            <p class="text-bone/70 text-sm">Brand Identity, Web Design</p>
-          </div>
-          <div class="group cursor-pointer">
-            <div
-              class="aspect-square bg-gradient-to-br from-gray-300 to-gray-500 mb-4 group-hover:from-gray-200 group-hover:to-gray-400 transition-all duration-300 shadow-lg group-hover:shadow-xl featured-work-pattern"
-            ></div>
-            <h3 class="text-lg font-medium mb-2 text-bone">Project Beta</h3>
-            <p class="text-bone/70 text-sm">Digital Strategy, Development</p>
-          </div>
-          <div class="group cursor-pointer">
-            <div
-              class="aspect-square bg-gradient-to-br from-gray-300 to-gray-500 mb-4 group-hover:from-gray-200 group-hover:to-gray-400 transition-all duration-300 shadow-lg group-hover:shadow-xl project-gamma-bg"
-            ></div>
-            <h3 class="text-lg font-medium mb-2 text-bone">Project Gamma</h3>
-            <p class="text-bone/70 text-sm">Web Design, User Experience</p>
-          </div>
+    <section id="work" class="py-24 px-6 relative overflow-hidden featured-work-bg">
+        <div class="absolute inset-0 opacity-30 metallic-shine-bg"></div>
+        <div class="gliding-shine-overlay"></div>
+        <div class="max-w-7xl mx-auto relative z-10">
+            <h2 class="text-4xl md:text-5xl font-light mb-16 text-center text-bone evolex-text-shadow">
+                Selected work
+            </h2>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="group cursor-pointer">
+                    <div
+                        class="aspect-square bg-gradient-to-br from-gray-300 to-gray-500 mb-4 group-hover:from-gray-200 group-hover:to-gray-400 transition-all duration-300 shadow-lg group-hover:shadow-xl featured-work-thumb">
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 text-bone">Project Alpha</h3>
+                    <p class="text-bone/70 text-sm">Brand Identity, Web Design</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div
+                        class="aspect-square bg-gradient-to-br from-gray-300 to-gray-500 mb-4 group-hover:from-gray-200 group-hover:to-gray-400 transition-all duration-300 shadow-lg group-hover:shadow-xl featured-work-pattern">
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 text-bone">Project Beta</h3>
+                    <p class="text-bone/70 text-sm">Digital Strategy, Development</p>
+                </div>
+                <div class="group cursor-pointer">
+                    <div
+                        class="aspect-square bg-gradient-to-br from-gray-300 to-gray-500 mb-4 group-hover:from-gray-200 group-hover:to-gray-400 transition-all duration-300 shadow-lg group-hover:shadow-xl project-gamma-bg">
+                    </div>
+                    <h3 class="text-lg font-medium mb-2 text-bone">Project Gamma</h3>
+                    <p class="text-bone/70 text-sm">Web Design, User Experience</p>
+                </div>
+            </div>
         </div>
-      </div>
     </section>
 
     <!-- Pricing Section -->
     <section id="pricing" class="py-24 px-6">
-      <div class="max-w-7xl mx-auto">
-        <div class="text-center mb-16">
-          <h2 class="text-4xl md:text-5xl font-light mb-6">Pricing</h2>
-          <p class="text-xl text-bone/70 max-w-2xl mx-auto">
-            Transparent pricing for every stage of your digital journey
-          </p>
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl md:text-5xl font-light mb-6">Pricing</h2>
+                <p class="text-xl text-bone/70 max-w-2xl mx-auto">
+                    Transparent pricing for every stage of your digital journey
+                </p>
+            </div>
+
+            <!-- Grid Container for Pricing Cards -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 max-w-7xl mx-auto">
+
+                <!-- Starter Package -->
+                <div
+                    class="border border-bone/20 p-8 hover:border-bone/40 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-out white-shadow white-shadow-hover">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-medium mb-2">Starter</h3>
+                        <p class="text-bone/70 mb-6">Perfect for small businesses and startups</p>
+                        <div class="text-4xl font-light mb-2">$2,500</div>
+                        <p class="text-sm text-bone/60">One-time project</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Brand identity design</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">5-page responsive website</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Basic SEO optimization</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">2 rounds of revisions</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full border border-bone text-bone px-6 py-3 text-sm font-medium tracking-wide hover:bg-bone hover:text-matte-black transition-colors">
+                        GET STARTED
+                    </button>
+                </div>
+
+                <!-- Professional Package -->
+                <div
+                    class="border border-bone p-8 bg-bone/5 relative hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 ease-out hover:bg-bone/10 white-shadow white-shadow-hover">
+                    <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
+                        <span
+                            class="bg-bone text-matte-black px-4 py-1 text-xs font-medium tracking-wide">POPULAR</span>
+                    </div>
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-medium mb-2">Professional</h3>
+                        <p class="text-bone/70 mb-6">Ideal for growing businesses</p>
+                        <div class="text-4xl font-light mb-2">$5,500</div>
+                        <p class="text-sm text-bone/60">One-time project</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Complete brand system</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">10-page responsive website</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Advanced SEO & analytics</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Content management system</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">3 rounds of revisions</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full bg-bone text-matte-black px-6 py-3 text-sm font-medium tracking-wide hover:bg-bone/90 transition-colors">
+                        GET STARTED
+                    </button>
+                </div>
+
+                <!-- Enterprise Package -->
+                <div
+                    class="border border-bone/20 p-8 hover:border-bone/40 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-out white-shadow white-shadow-hover">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-medium mb-2">Enterprise</h3>
+                        <p class="text-bone/70 mb-6">For established companies</p>
+                        <div class="text-4xl font-light mb-2">$12,000</div>
+                        <p class="text-sm text-bone/60">One-time project</p>
+                    </div>
+                    <ul class="space-y-4 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Full digital strategy</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Custom web application</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">E-commerce integration</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Advanced analytics dashboard</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Unlimited revisions</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">3 months support</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full border border-bone text-bone px-6 py-3 text-sm font-medium tracking-wide hover:bg-bone hover:text-matte-black transition-colors">
+                        GET STARTED
+                    </button>
+                </div>
+
+                <!-- Custom Package -->
+                <div
+                    class="border border-bone/20 p-8 hover:border-bone/40 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-out white-shadow white-shadow-hover">
+                    <div class="mb-8">
+                        <h3 class="text-2xl font-medium mb-2">Custom</h3>
+                        <p class="text-bone/70 mb-6">Tailored to your exact visions</p>
+                        <div class="text-4xl font-light mb-2">Let's Discuss</div>
+                        <p class="text-sm text-bone/60">Flexible scope & budget</p>
+                    </div>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Fully custom design</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Your choice of features</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Interactive elements & animations</span>
+                        </li>
+                        <li class="flex items-start">
+                            <span class="text-bone/40 mr-3">•</span>
+                            <span class="text-sm">Ongoing collaboration & revisions</span>
+                        </li>
+                    </ul>
+                    <button
+                        class="w-full border border-bone text-bone px-6 py-3 text-sm font-medium tracking-wide hover:bg-bone hover:text-matte-black transition-colors">
+                        REQUEST A QUOTE
+                    </button>
+                </div>
+
+            </div>
         </div>
-
-        <div class="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          <!-- Starter Package -->
-          <div
-            class="border border-bone/20 p-8 hover:border-bone/40 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-out white-shadow white-shadow-hover"
-          >
-            <div class="mb-8">
-              <h3 class="text-2xl font-medium mb-2">Starter</h3>
-              <p class="text-bone/70 mb-6">
-                Perfect for small businesses and startups
-              </p>
-              <div class="text-4xl font-light mb-2">$2,500</div>
-              <p class="text-sm text-bone/60">One-time project</p>
-            </div>
-            <ul class="space-y-4 mb-8">
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">Brand identity design</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">5-page responsive website</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">Basic SEO optimization</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">2 rounds of revisions</span>
-              </li>
-            </ul>
-            <button
-              class="w-full border border-bone text-bone px-6 py-3 text-sm font-medium tracking-wide hover:bg-bone hover:text-matte-black transition-colors"
-            >
-              GET STARTED
-            </button>
-          </div>
-
-          <!-- Professional Package -->
-          <div
-            class="border border-bone p-8 bg-bone/5 relative hover:-translate-y-3 hover:shadow-2xl transition-all duration-300 ease-out hover:bg-bone/10 white-shadow white-shadow-hover"
-          >
-            <div class="absolute -top-3 left-1/2 transform -translate-x-1/2">
-              <span
-                class="bg-bone text-matte-black px-4 py-1 text-xs font-medium tracking-wide"
-                >POPULAR</span
-              >
-            </div>
-            <div class="mb-8">
-              <h3 class="text-2xl font-medium mb-2">Professional</h3>
-              <p class="text-bone/70 mb-6">Ideal for growing businesses</p>
-              <div class="text-4xl font-light mb-2">$5,500</div>
-              <p class="text-sm text-bone/60">One-time project</p>
-            </div>
-            <ul class="space-y-4 mb-8">
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">Complete brand system</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">10-page responsive website</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">Advanced SEO & analytics</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">Content management system</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">3 rounds of revisions</span>
-              </li>
-            </ul>
-            <button
-              class="w-full bg-bone text-matte-black px-6 py-3 text-sm font-medium tracking-wide hover:bg-bone/90 transition-colors"
-            >
-              GET STARTED
-            </button>
-          </div>
-
-          <!-- Enterprise Package -->
-          <div
-            class="border border-bone/20 p-8 hover:border-bone/40 hover:-translate-y-2 hover:shadow-2xl transition-all duration-300 ease-out white-shadow white-shadow-hover"
-          >
-            <div class="mb-8">
-              <h3 class="text-2xl font-medium mb-2">Enterprise</h3>
-              <p class="text-bone/70 mb-6">For established companies</p>
-              <div class="text-4xl font-light mb-2">$12,000</div>
-              <p class="text-sm text-bone/60">One-time project</p>
-            </div>
-            <ul class="space-y-4 mb-8">
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">Full digital strategy</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">Custom web application</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">E-commerce integration</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">Advanced analytics dashboard</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">Unlimited revisions</span>
-              </li>
-              <li class="flex items-start">
-                <span class="text-bone/40 mr-3">•</span>
-                <span class="text-sm">3 months support</span>
-              </li>
-            </ul>
-            <button
-              class="w-full border border-bone text-bone px-6 py-3 text-sm font-medium tracking-wide hover:bg-bone hover:text-matte-black transition-colors"
-            >
-              GET STARTED
-            </button>
-          </div>
-        </div>
-      </div>
+    </section>
     </section>
 
-    <!-- Contact Section -->
+   <!-- Contact Section -->
     <section id="contact" class="py-24 px-6">
       <div class="max-w-4xl mx-auto text-center">
         <h2 class="text-4xl md:text-5xl font-light mb-8">
@@ -416,5 +398,6 @@
     </footer>
 
     <script src="script.js"></script>
-  </body>
+</body>
+
 </html>
