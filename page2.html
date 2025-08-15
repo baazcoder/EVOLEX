@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Future Interactive</title>
+    <meta
+      name="description"
+      content="Experience the future with hidden easter eggs, themes, and smooth animations."
+    />
+    <meta name="theme-color" content="#0f0f12" />
+
+    <!-- Preload critical resources -->
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+    />
+
+    <!-- External CSS -->
+    <link rel="stylesheet" href="style2.css" />
+
+    <!-- Google Fonts -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body data-theme="dark">
+    <!-- Skip to content link for accessibility -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Easter Egg: Matrix Rain -->
+    <canvas id="matrix" aria-hidden="true" role="presentation"></canvas>
+
+    <!-- Theme Toggle -->
+    <button class="theme-toggle" aria-label="Toggle theme" aria-live="polite">
+      <span aria-hidden="true">🎨</span>
+    </button>
+
+    <!-- Hint Tooltip -->
+    <div class="hint" id="hint" role="alert" aria-live="polite">
+      Try typing 'future' or pressing ↑↑↓↓←→←→BA
+    </div>
+
+    <div class="container" id="main-content">
+      <div class="left-content">
+        <h1
+          class="main-title"
+          id="title"
+          tabindex="0"
+          aria-label="Welcome to the Future, click for surprise"
+        >
+          Welcome to the Future
+        </h1>
+        <p class="subtitle" id="subtitle">
+          Experience the next generation of digital innovation with hidden
+          easter eggs, themes, and smooth animations.
+        </p>
+        <button
+          class="cta-button"
+          id="cta"
+          aria-label="Get started on your journey"
+        >
+          Get Started
+          <svg
+            width="16"
+            height="16"
+            viewBox="0 0 16 16"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M8 0L6.59 1.41L12.17 7H0V9H12.17L6.59 14.59L8 16L16 8L8 0Z"
+              fill="white"
+            />
+          </svg>
+        </button>
+      </div>
+
+      <div
+        class="right-animation"
+        id="textContainer"
+        aria-label="Animated text display"
+      >
+        <div class="falling-text" tabindex="0">mark_01</div>
+        <div class="falling-text" tabindex="0"></div>
+        <div class="falling-text" tabindex="0">twitter</div>
+        <div class="falling-text" tabindex="0">website</div>
+        <div class="falling-text" tabindex="0">ai_models</div>
+        <div class="falling-text" tabindex="0">Technology</div>
+        <div class="falling-text" tabindex="0">Design</div>
+        <div class="falling-text" tabindex="0">Innovation</div>
+      </div>
+    </div>
+
+    <!-- External JavaScript -->
+    <script src="script2.js"></script>
+  </body>
+</html>

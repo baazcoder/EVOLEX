@@ -1,194 +1,285 @@
-
-/* Custom Fonts */
+/* === Import Fonts === */
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
 
-/* Tailwind CSS is included via a CDN in the HTML. */
-/* The styles below are from the <style> tags in the provided HTML. */
-/* Custom properties and body styles */
-/* Custom properties and body styles */
+/* === Custom Properties === */
 :root {
-    --bone: #F9F6F0;
-    --matte-black: #1A1A1A;
+  --bone: #f9f6f0;
+  --matte-black: #1a1a1a;
 }
 
+/* === Base Styles === */
 body {
-    background-color: var(--matte-black);
-    color: var(--bone);
-    font-family: 'Inter', system-ui, sans-serif;
-    background-image: radial-gradient(circle at 1px 1px, rgba(249, 246, 240, 0.05) 1px, transparent 0);
-    background-size: 40px 40px;
-    position: relative;
-    overflow-x: hidden;
+  background-color: var(--matte-black);
+  color: var(--bone);
+  font-family: 'Inter', system-ui, sans-serif;
+  background-image: radial-gradient(circle at 1px 1px, rgba(249, 246, 240, 0.05) 1px, transparent 0);
+  background-size: 40px 40px;
+  position: relative;
+  overflow-x: hidden;
+  transition: background-color 0.3s ease;
 }
 
-/* Nav */
+/* === Nav === */
 nav {
-    backdrop-filter: blur(5px);
+  backdrop-filter: blur(5px);
 }
 
-/* Animations and Overlays */
+/* === Animations and Overlays === */
 .grain-animation {
-    background-image:
-        radial-gradient(circle at 25% 25%, rgba(249, 246, 240, 0.1) 1px, transparent 1px),
-        radial-gradient(circle at 75% 75%, rgba(249, 246, 240, 0.08) 1px, transparent 1px),
-        radial-gradient(circle at 50% 10%, rgba(249, 246, 240, 0.06) 1px, transparent 1px),
-        radial-gradient(circle at 10% 90%, rgba(249, 246, 240, 0.05) 1px, transparent 1px);
-    background-size: 4px 4px, 6px 6px, 8px 8px, 10px 10px;
-    animation: grain 8s linear infinite;
+  background-image:
+    radial-gradient(circle at 25% 25%, rgba(249, 246, 240, 0.1) 1px, transparent 1px),
+    radial-gradient(circle at 75% 75%, rgba(249, 246, 240, 0.08) 1px, transparent 1px),
+    radial-gradient(circle at 50% 10%, rgba(249, 246, 240, 0.06) 1px, transparent 1px),
+    radial-gradient(circle at 10% 90%, rgba(249, 246, 240, 0.05) 1px, transparent 1px);
+  background-size: 4px 4px, 6px 6px, 8px 8px, 10px 10px;
+  animation: grain 8s linear infinite;
 }
 
 @keyframes grain {
-    0% { transform: translate(0, 0); }
-    10% { transform: translate(-1px, -1px); }
-    20% { transform: translate(1px, 0px); }
-    30% { transform: translate(0px, 1px); }
-    40% { transform: translate(-1px, 0px); }
-    50% { transform: translate(1px, 1px); }
-    60% { transform: translate(0px, -1px); }
-    70% { transform: translate(-1px, 1px); }
-    80% { transform: translate(1px, -1px); }
-    90% { transform: translate(0px, 0px); }
-    100% { transform: translate(-1px, -1px); }
+  0% { transform: translate(0, 0); }
+  10% { transform: translate(-1px, -1px); }
+  20% { transform: translate(1px, 0); }
+  30% { transform: translate(0, 1px); }
+  40% { transform: translate(-1px, 0); }
+  50% { transform: translate(1px, 1px); }
+  60% { transform: translate(0, -1px); }
+  70% { transform: translate(-1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  90% { transform: translate(0, 0); }
+  100% { transform: translate(-1px, -1px); }
 }
 
 .evolex-fade-in {
-    opacity: 0;
-    animation: fadeInUp 1.5s ease-out 0.5s forwards;
-    text-shadow: 0 0 10px rgba(249, 246, 240, 0.3), 0 0 20px rgba(249, 246, 240, 0.2), 0 0 30px rgba(249, 246, 240, 0.1);
+  opacity: 0;
+  animation: fadeInUp 1.5s ease-out 0.5s forwards;
+  text-shadow: 
+    0 0 10px rgba(249, 246, 240, 0.3),
+    0 0 20px rgba(249, 246, 240, 0.2),
+    0 0 30px rgba(249, 246, 240, 0.1);
 }
 
 @keyframes fadeInUp {
-    0% { opacity: 0; transform: translateY(30px); }
-    100% { opacity: 1; transform: translateY(0); }
+  0% { opacity: 0; transform: translateY(30px); }
+  100% { opacity: 1; transform: translateY(0); }
 }
 
 @keyframes metallic-shine {
-    0% { background-position: -100px -100px, 100px 100px; }
-    50% { background-position: 100px 100px, -100px -100px; }
-    100% { background-position: -100px -100px, 100px 100px; }
+  0% { background-position: -100px -100px, 100px 100px; }
+  50% { background-position: 100px 100px, -100px -100px; }
+  100% { background-position: -100px -100px, 100px 100px; }
 }
 
 @keyframes gliding-shine {
-    0% { transform: translateX(-150%) rotate(25deg); opacity: 0; }
-    10% { opacity: 1; }
-    90% { opacity: 1; }
-    100% { transform: translateX(150vw) rotate(25deg); opacity: 0; }
+  0% { transform: translateX(-150%) rotate(25deg); opacity: 0; }
+  10% { opacity: 1; }
+  90% { opacity: 1; }
+  100% { transform: translateX(150vw) rotate(25deg); opacity: 0; }
 }
 
 .gliding-shine-overlay {
-    position: absolute;
-    top: -50%;
-    left: -100%;
-    width: 100%;
-    height: 200%;
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.05) 20%, rgba(255, 255, 255, 0.15) 50%, rgba(255, 255, 255, 0.05) 80%, transparent 100%);
-    animation: gliding-shine 5s ease-in-out infinite;
-    pointer-events: none;
-    z-index: 5;
-    transform-origin: center;
+  position: absolute;
+  top: -50%;
+  left: -100%;
+  width: 100%;
+  height: 200%;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 20%,
+    rgba(255, 255, 255, 0.15) 50%,
+    rgba(255, 255, 255, 0.05) 80%,
+    transparent 100%
+  );
+  animation: gliding-shine 5s ease-in-out infinite;
+  pointer-events: none;
+  z-index: 5;
+  transform-origin: center;
 }
 
 .gliding-shine-overlay::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.08) 30%, rgba(255, 255, 255, 0.2) 50%, rgba(255, 255, 255, 0.08) 70%, transparent 100%);
-    transform: skewX(-20deg);
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.08) 30%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.08) 70%,
+    transparent 100%
+  );
+  transform: skewX(-20deg);
 }
 
-/* Section specific styles */
+/* === Section Specific Styles === */
 #work {
-    background: linear-gradient(135deg, #282727 0%, #383838 25%, #262626 50%, #4F4F4F 75%, #282828 100%);
+  background: linear-gradient(135deg, #282727 0%, #383838 25%, #262626 50%, #4f4f4f 75%, #282828 100%);
 }
 
-#work > div.absolute {
-    background: linear-gradient(45deg, transparent 30%, rgba(68, 68, 68, 0.3) 50%, transparent 70%), linear-gradient(-45deg, transparent 30%, rgba(255,255,255,0.2) 50%, transparent 70%);
-    background-size: 20px 20px;
-    animation: metallic-shine 3s ease-in-out infinite;
+#work > .absolute {
+  background: 
+    linear-gradient(45deg, transparent 30%, rgba(68, 68, 68, 0.3) 50%, transparent 70%),
+    linear-gradient(-45deg, transparent 20%, rgba(255,255,255,0.2) 50%, transparent 70%);
+  background-size: 20px 20px;
+  animation: metallic-shine 3s ease-in-out infinite;
 }
 
 #work h2 {
-    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+  text-shadow: 0 2px 4px rgba(0,0,0,0.3);
 }
 
-.work-item-bg {
-    background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.2) 75%), linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.2) 75%);
-    background-size: 4px 4px;
-    background-position: 0 0, 2px 2px;
+.work-item-bg,
+.group .aspect-square {
+  background-image: 
+    linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.2) 75%),
+    linear-gradient(45deg, rgba(255,255,255,0.2) 25%, transparent 25%, transparent 75%, rgba(255,255,255,0.2) 75%);
+  background-size: 4px 4px;
+  background-position: 0 0, 2px 2px;
 }
 
-/* --- Corrected Pricing Card Styles --- */
-
-/* The initial state for all pricing cards, including the base shadow */
+/* --- Pricing Card Styles --- */
 .white-shadow {
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
-    border-radius: 30px;
-    transition: all 0.3s ease-out; /* Keeps the smooth animation */
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+  border-radius: 30px;
+  transition: all 0.3s ease-out;
 }
 
-/* The hover state, which overrides the base shadow with a more intense one.
-   The !important rule is used here to ensure this style takes priority over any
-   conflicting utility classes from Tailwind CSS.
-*/
-.white-shadow.white-shadow-hover:hover {
-    box-shadow: 0 0 30px rgba(255, 255, 255, 0.5) !important;
-    border-radius: 30px;
-    transform: translateY(-8px) !important;
+.white-shadow-hover:hover {
+  box-shadow: 0 0 30px rgba(255, 255, 255, 0.5);
+  transform: translateY(-8px);
 }
 
-/* Specific styling for the 'popular' pricing card to maintain its unique hover effect */
-.border.border-bone.p-8:hover {
-    transform: translateY(-12px) !important;
+.border.border-bone.p-8:hover,
+.border.border-bone\/20:hover {
+  transform: translateY(-8px);
 }
-/* --- THEME SLIDER --- */
-.slider-container {
-  width: 180px;
-  height: 4px;
-  background: rgba(249, 246, 240, 0.2);
-  border-radius: 2px;
+
+/* === THEME TOGGLE BUTTON === */
+.theme-toggle-btn {
+  appearance: none;
+  background: rgba(249, 246, 240, 0.1);
+  border: none;
+  border-radius: 9999px;
+  width: 60px;
+  height: 32px;
   position: relative;
   cursor: pointer;
-  margin: 0 auto;
-  overflow: visible;
+  padding: 0;
+  margin: 0;
+  backdrop-filter: blur(5px);
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  transition: 
+    background 0.3s ease,
+    justify-content 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.15);
 }
 
-#theme-icon {
-  position: absolute;
-  top: 50%;
-  left: 0;
-  transform: translate(-50%, -50%);
+body.light-theme .theme-toggle-btn {
+  justify-content: flex-end;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.theme-toggle-btn:focus {
+  outline: 2px solid var(--bone);
+  outline-offset: 3px;
+}
+
+.theme-toggle-btn:active {
+  transform: scale(0.97);
+}
+
+/* Icon Container */
+.theme-icon {
+  display: flex;
+  position: relative;
   width: 32px;
   height: 32px;
-  transition: left 0.2s ease;
-  z-index: 3;
+  justify-content: center;
+  align-items: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+  z-index: 2;
 }
 
-#theme-icon .sun,
-#theme-icon .moon {
+.sun, .moon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
   opacity: 0;
-  transition: opacity 1.5s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: none;
+  transition: opacity 0.4s ease-in-out, filter 0.4s ease-in-out;
+  width: 18px;
+  height: 18px;
 }
 
-#theme-icon .sun {
-  opacity: 0;
-  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.6));
+.sun svg, .moon svg {
+  width: 100%;
+  height: 100%;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
 }
 
-#theme-icon .moon {
+/* Default: Moon visible */
+.moon {
   opacity: 1;
-  filter: drop-shadow(0 0 6px rgba(200, 200, 255, 0.4));
+  filter: drop-shadow(0 0 6px rgb(255, 255, 255));
 }
 
-/* --- LIGHT THEME --- */
+.sun {
+  opacity: 0;
+  filter: drop-shadow(0 0 8px rgba(255, 255, 255, 0.762));
+}
+
+/* Light Theme: Sun visible */
+body.light-theme .sun {
+  opacity: 1;
+  filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.819));
+}
+
+body.light-theme .moon {
+  opacity: 0;
+  filter: drop-shadow(0 0 4px rgba(255, 255, 255, 0.823));
+}
+
+/* Inner Glow */
+.theme-toggle-btn::before {
+  content: '';
+  position: absolute;
+  inset: 2px;
+  background: radial-gradient(ellipse at 20% 20%, rgba(255, 255, 255, 0.12), transparent 60%);
+  border-radius: inherit;
+  opacity: 0.8;
+  pointer-events: none;
+}
+
+body.light-theme .theme-toggle-btn::before {
+  opacity: 0.5;
+}
+
+/* Hover Effect */
+.theme-toggle-btn:hover .theme-icon {
+  transform: scale(1.08);
+}
+
+/* === LIGHT THEME GLOBAL STYLES === */
 body.light-theme {
-  background: #f5f7fa;
-  color: #333; /* Dark text for readability */
+  background-color: #bfc2c7;
+  color: #a9fff9;
 }
 
-/* Ensure all text is readable */
+body.light-theme *,
+body.light-theme *::before,
+body.light-theme *::after {
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
 body.light-theme h1,
 body.light-theme h2,
 body.light-theme h3,
@@ -198,62 +289,39 @@ body.light-theme h6,
 body.light-theme p,
 body.light-theme span,
 body.light-theme li,
-body.light-theme a {
-  color: #333 !important;
+body.light-theme a,
+body.light-theme button {
+  color: #333;
 }
 
-/* Update slider track for visibility in light mode */
-body.light-theme .slider-container {
-  background: rgba(0, 0, 0, 0.2);
-}
-
-/* Show Sun, hide Moon */
-body.light-theme #theme-icon .sun {
-  opacity: 1;
-}
-
-body.light-theme #theme-icon .moon {
-  opacity: 0;
-}
-
-/* Hide stars in light mode */
-body.light-theme .stars {
-  opacity: 0;
-}
-
-/* Button styles in light mode */
-body.light-theme button,
-body.light-theme .button {
-  background: #1a1a1a !important;
-  color: #f9f6f0 !important;
-  border: 1px solid #1a1a1a;
-}
-
-body.light-theme button:hover,
-body.light-theme .button:hover {
-  background: #333 !important;
-}
-
-/* Border visibility in light mode */
 body.light-theme .border-bone,
 body.light-theme .border-bone\/10,
-body.light-theme .border-bone\/20 {
-  border-color: #333 !important;
-}
-
-/* Pricing card borders */
+body.light-theme .border-bone\/20,
 body.light-theme .border {
-  border-color: #333 !important;
+  border-color: #555;
 }
 
-/* Social links */
 body.light-theme .text-bone\/70,
 body.light-theme .text-bone\/60,
 body.light-theme .text-bone\/40 {
-  color: #555 !important;
+  color: #555;
 }
 
-/* Hover effects */
 body.light-theme .hover\:text-bone:hover {
-  color: #1a1a1a !important;
+  color: #1a1a1a;
+}
+
+/* Button styles in light theme */
+body.light-theme .bg-bone.text-matte-black {
+  background: #1a1a1a !important;
+  color: var(--bone) !important;
+}
+
+body.light-theme .bg-bone.text-matte-black:hover {
+  background: #333 !important;
+}
+
+body.light-theme .border.border-bone.text-bone:hover {
+  background: #1a1a1a !important;
+  color: var(--bone) !important;
 }

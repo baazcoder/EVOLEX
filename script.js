@@ -1,74 +1,31 @@
 // === DOM Elements ===
-const slider = document.getElementById('theme-slider');
-const icon = document.getElementById('theme-icon');
-const starsContainer = document.getElementById('stars');
+const toggleBtn = document.getElementById('theme-toggle');
 const body = document.body;
-let isDragging = false;
 
+let isLightTheme = false; // Start in dark mode
 
-
-// Call once on page load
-
-    
-
-// === Update Theme Based on Slider Position ===
-function updateTheme(percentage) {
-  icon.style.left = `${percentage}%`;
-
-  const sun = icon.querySelector('.sun');
-  const moon = icon.querySelector('.moon');
-
-  if (percentage < 30) {
-    sun.style.opacity = 0;
-    moon.style.opacity = 1;
-    body.classList.remove('light-theme');
-  } else {
-    sun.style.opacity = (percentage - 30) / 70;
-    moon.style.opacity = 1 - (percentage - 30) / 70;
+// === Update Theme Based on Mode ===
+function updateTheme(isLight) {
+  if (isLight) {
     body.classList.add('light-theme');
+  } else {
+    body.classList.remove('light-theme');
   }
+  // Save preference
+  localStorage.setItem('light-theme', isLight);
 }
 
-// === Drag Events ===
-icon.addEventListener('mousedown', (e) => {
-  e.preventDefault();
-  isDragging = true;
+// === Toggle Theme on Click ===
+toggleBtn.addEventListener('click', () => {
+  isLightTheme = !isLightTheme;
+  updateTheme(isLightTheme);
 });
 
-document.addEventListener('mousemove', (e) => {
-  if (!isDragging) return;
-  const rect = slider.getBoundingClientRect();
-  const pos = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-  updateTheme((pos / rect.width) * 100);
-});
-
-document.addEventListener('mouseup', () => {
-  isDragging = false;
-});
-
-// Touch Support
-icon.addEventListener('touchstart', (e) => {
-  e.preventDefault();
-  isDragging = true;
-});
-
-document.addEventListener('touchmove', (e) => {
-  if (!isDragging) return;
-  const touch = e.touches[0];
-  const rect = slider.getBoundingClientRect();
-  const pos = Math.max(0, Math.min(touch.clientX - rect.left, rect.width));
-  updateTheme((pos / rect.width) * 100);
-});
-
-document.addEventListener('touchend', () => {
-  isDragging = false;
-});
-
-// Click on track
-slider.addEventListener('click', (e) => {
-  const rect = slider.getBoundingClientRect();
-  const pos = Math.max(0, Math.min(e.clientX - rect.left, rect.width));
-  updateTheme((pos / rect.width) * 100);
+// === Initialize Theme on Load (from localStorage or default) ===
+document.addEventListener('DOMContentLoaded', () => {
+  const saved = localStorage.getItem('light-theme');
+  isLightTheme = saved === 'true';
+  updateTheme(isLightTheme);
 });
 
 // === Three.js Ripple Background ===
@@ -76,6 +33,8 @@ let scene, camera, renderer, uniforms;
 
 function initRipple() {
   const container = document.getElementById('ripple-bg');
+  if (!container) return;
+
   scene = new THREE.Scene();
   camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0, 1);
 
@@ -121,13 +80,14 @@ function initRipple() {
 
   animate();
 
+  // Handle resize
   window.addEventListener('resize', () => {
     uniforms.u_resolution.value.set(window.innerWidth, window.innerHeight);
     renderer.setSize(window.innerWidth, window.innerHeight);
   });
 }
 
-// === Smooth Scrolling ===
+// === Smooth Scrolling for Anchor Links ===
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {
     e.preventDefault();
@@ -138,14 +98,17 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   });
 });
 
-// === Mobile Menu (Placeholder) ===
-document.querySelector('button.md\\:hidden')?.addEventListener('click', () => {
-  alert('Mobile menu would open here');
-});
+// === Mobile Menu Toggle (Improved) ===
+const mobileMenuButton = document.querySelector('nav button.md\\:hidden');
+if (mobileMenuButton) {
+  mobileMenuButton.addEventListener('click', () => {
+    console.warn("Mobile menu not implemented — would toggle mobile navigation.");
+    // You can add mobile menu logic here later
+  });
+}
 
-// === Initialize ===
+// === Initialize on Load ===
 document.addEventListener('DOMContentLoaded', () => {
- 
-  updateTheme(0); // Start at night
-  initRipple();
+  updateTheme(isLightTheme); // Apply theme
+  initRipple();             // Start ripple effect
 });
