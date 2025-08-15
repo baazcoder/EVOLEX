@@ -23,6 +23,7 @@ body {
 
 /* Nav */
 nav {
+    -webkit-backdrop-filter: blur(5px); /* Safari support */
     backdrop-filter: blur(5px);
 }
 
