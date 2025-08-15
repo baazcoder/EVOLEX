@@ -51,43 +51,74 @@
       <div class="max-w-7xl mx-auto px-6 py-4">
         <div class="flex justify-between items-center">
           <div class="text-2xl font-bold tracking-tight">EVOLEX</div>
-          <div class="hidden md:flex space-x-8">
-            <a
-              href="#services"
-              class="text-sm font-medium hover:text-bone/70 transition-colors"
-              >Services</a
+
+          <!-- Theme Toggle Button -->
+          <div class="flex items-center space-x-6">
+            <button
+              id="theme-toggle"
+              class="theme-toggle-btn"
+              aria-label="Toggle light and dark mode"
             >
-            <a
-              href="#work"
-              class="text-sm font-medium hover:text-bone/70 transition-colors"
-              >Work</a
-            >
-            <a
-              href="#pricing"
-              class="text-sm font-medium hover:text-bone/70 transition-colors"
-              >Pricing</a
-            >
-            <a
-              href="#contact"
-              class="text-sm font-medium hover:text-bone/70 transition-colors"
-              >Contact</a
-            >
+              <div class="theme-icon">
+                <!-- Sun Icon -->
+                <svg class="sun" viewBox="0 0 24 24">
+                  <circle cx="12" cy="12" r="5" />
+                  <line x1="12" y1="1" x2="12" y2="4" />
+                  <line x1="12" y1="20" x2="12" y2="23" />
+                  <line x1="4" y1="12" x2="1" y2="12" />
+                  <line x1="23" y1="12" x2="20" y2="12" />
+                  <line x1="19" y1="19" x2="16.5" y2="16.5" />
+                  <line x1="7.5" y1="7.5" x2="5" y2="5" />
+                  <line x1="19" y1="5" x2="16.5" y2="7.5" />
+                  <line x1="7.5" y1="16.5" x2="5" y2="19" />
+                </svg>
+                <!-- Moon Icon -->
+                <svg class="moon" viewBox="0 0 24 24">
+                  <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                </svg>
+              </div>
+            </button>
+
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex space-x-8">
+              <a
+                href="#services"
+                class="text-sm font-medium hover:text-bone/70 transition-colors"
+                >Services</a
+              >
+              <a
+                href="#work"
+                class="text-sm font-medium hover:text-bone/70 transition-colors"
+                >Work</a
+              >
+              <a
+                href="#pricing"
+                class="text-sm font-medium hover:text-bone/70 transition-colors"
+                >Pricing</a
+              >
+              <a
+                href="#contact"
+                class="text-sm font-medium hover:text-bone/70 transition-colors"
+                >Contact</a
+              >
+            </div>
+            <!-- Mobile Menu Button -->
+            <button class="md:hidden">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
           </div>
-          <button class="md:hidden">
-            <svg
-              class="w-6 h-6"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                stroke-linecap="round"
-                stroke-linejoin="round"
-                stroke-width="2"
-                d="M4 6h16M4 12h16M4 18h16"
-              ></path>
-            </svg>
-          </button>
         </div>
       </div>
     </nav>
