@@ -68,10 +68,10 @@ const themes = ['dark', 'light', 'neon'];
 let currentThemeIndex = 0;
 
 // Check for saved theme preference with fallback
-const savedTheme = SafeStorage.getItem('preferred-theme');
-if (savedTheme && themes.includes(savedTheme)) {
-    currentThemeIndex = themes.indexOf(savedTheme);
-    body.setAttribute('data-theme', savedTheme);
+const preferredTheme = SafeStorage.getItem('preferred-theme');
+if (preferredTheme && themes.includes(preferredTheme)) {
+    currentThemeIndex = themes.indexOf(preferredTheme);
+    body.setAttribute('data-theme', preferredTheme);
 } else {
     // Apply default theme
     body.setAttribute('data-theme', themes[currentThemeIndex]);
@@ -87,19 +87,33 @@ function updateThemeColor() {
     document.querySelector('meta[name="theme-color"]').setAttribute('content', themeColor[themes[currentThemeIndex]]);
 }
 
-// Theme toggle event listener
-themeToggle.addEventListener('click', () => {
-    currentThemeIndex = (currentThemeIndex + 1) % themes.length;
-    body.setAttribute('data-theme', themes[currentThemeIndex]);
-    
-    // Only save if localStorage is available
-    if (!SafeStorage.setItem('preferred-theme', themes[currentThemeIndex])) {
-        console.log('Theme preference will not be saved (localStorage unavailable)');
+
+  // === Theme Toggle ===
+  const toggleBtn = document.querySelector(".theme-toggle-btn");
+
+  // Load saved theme from localStorage
+  const localTheme = localStorage.getItem("theme");
+  if (localTheme) {
+    body.setAttribute("data-theme", localTheme);
+    if (localTheme === "light") body.classList.add("light-theme");
+  }
+
+  toggleBtn.addEventListener("click", () => {
+    let currentTheme = body.getAttribute("data-theme");
+
+    if (currentTheme === "light") {
+      // Switch to dark
+      body.setAttribute("data-theme", "dark");
+      body.classList.remove("light-theme");
+      localStorage.setItem("theme", "dark");
+    } else {
+      // Switch to light
+      body.setAttribute("data-theme", "light");
+      body.classList.add("light-theme");
+      localStorage.setItem("theme", "light");
     }
-    
-    updateThemeColor();
-    showHint(`🎨 Theme: ${themes[currentThemeIndex].charAt(0).toUpperCase() + themes[currentThemeIndex].slice(1)}`);
-});
+  });
+
 
 // ===== Parallax Effect with performance optimization =====
 let ticking = false;
@@ -525,3 +539,4 @@ window.addEventListener('resize', () => {
         }
     }, 100);
 });
+

@@ -8,14 +8,24 @@
       name="description"
       content="Experience the future with hidden easter eggs, themes, and smooth animations."
     />
-
-    <!-- Preload critical resources -->
-    <link
-      rel="preload"
-      as="style"
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap"
-    />
-
+ <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        bone: "#F9F6F0",
+                        "matte-black": "#1A1A1A",
+                    },
+                    fontFamily: {
+                        sans: ["Inter", "system-ui", "sans-serif"],
+                    },
+                },
+            },
+        };
+    </script>
+    
+  
     <!-- External CSS -->
     <link rel="stylesheet" href="style2.css" />
 
@@ -25,6 +35,54 @@
       rel="stylesheet"
     />
   </head>
+  <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-matte-black/90 backdrop-blur-sm z-50 border-b border-bone/10">
+        <div class="max-w-7xl mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <div class="text-2xl font-bold tracking-tight">EVOLEX</div>
+
+                <!-- Theme Toggle Button -->
+                <div class="flex items-center space-x-6">
+                    <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle light and dark mode">
+                        <div class="theme-icon">
+                            <!-- Sun Icon -->
+                            <svg class="sun" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="5" />
+                                <line x1="12" y1="1" x2="12" y2="4" />
+                                <line x1="12" y1="20" x2="12" y2="23" />
+                                <line x1="4" y1="12" x2="1" y2="12" />
+                                <line x1="23" y1="12" x2="20" y2="12" />
+                                <line x1="19" y1="19" x2="16.5" y2="16.5" />
+                                <line x1="7.5" y1="7.5" x2="5" y2="5" />
+                                <line x1="19" y1="5" x2="16.5" y2="7.5" />
+                                <line x1="7.5" y1="16.5" x2="5" y2="19" />
+                            </svg>
+                            <!-- Moon Icon -->
+                            <svg class="moon" viewBox="0 0 24 24">
+                                <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z" />
+                            </svg>
+                        </div>
+                    </button>
+
+                    <!-- Desktop Menu -->
+                    <div class="hidden md:flex space-x-8">
+                        <a href="#About Us"
+                            class="text-sm font-medium hover:text-bone/70 transition-colors">About Us</a>
+                        <a href="#work" class="text-sm font-medium hover:text-bone/70 transition-colors">Work</a>
+                        <a href="#pricing" class="text-sm font-medium hover:text-bone/70 transition-colors">Pricing</a>
+                        <a href="#contact" class="text-sm font-medium hover:text-bone/70 transition-colors">Contact</a>
+                    </div>
+                    <!-- Mobile Menu Button -->
+                    <button class="md:hidden" aria-label="Open mobile menu" title="Open mobile menu">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
   <body data-theme="dark">
     <!-- Skip to content link for accessibility -->
     <a href="#main-content" class="skip-link">Skip to main content</a>
