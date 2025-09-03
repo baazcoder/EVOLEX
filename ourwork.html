@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Double-Sided Orbital Card Navigation</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .orbit-container {
+            perspective: 2000px;
+            transform-style: preserve-3d;
+            width: 100%;
+            height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-top: 4rem;
+        }
+        
+        .card-orbit {
+            position: relative;
+            width: 800px;
+            height: 400px;
+            transform-style: preserve-3d;
+            /* Ultra-smooth transition with refined cubic-bezier */
+            transition: transform 3.5s cubic-bezier(0.22, 0.61, 0.36, 1);
+        }
+        
+        .card {
+            position: absolute;
+            width: 260px;
+            height: 340px;
+            left: 50%;
+            top: 50%;
+            margin-left: -130px;
+            margin-top: -170px;
+            backface-visibility: visible;
+            border-radius: 16px;
+            /* Matte black background */
+            background: #0a0a0a;
+            border: 1px solid #1a1a1a;
+            /* Soft shadow for depth without gloss */
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 1.75rem;
+            transition: all 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            transform-style: preserve-3d;
+        }
+        
+        .card:hover {
+            transform: scale(1.1) translateZ(40px);
+            box-shadow: 0 16px 32px rgba(0, 0, 0, 0.8);
+            border-color: #333333;
+            z-index: 2;
+        }
+        
+        /* 8 cards positioned in a perfect circle with precise angles */
+        .card:nth-child(1) { transform: rotateY(0deg) translateZ(520px); }
+        .card:nth-child(2) { transform: rotateY(45deg) translateZ(520px); }
+        .card:nth-child(3) { transform: rotateY(90deg) translateZ(520px); }
+        .card:nth-child(4) { transform: rotateY(135deg) translateZ(520px); }
+        .card:nth-child(5) { transform: rotateY(180deg) translateZ(520px); }
+        .card:nth-child(6) { transform: rotateY(225deg) translateZ(520px); }
+        .card:nth-child(7) { transform: rotateY(270deg) translateZ(520px); }
+        .card:nth-child(8) { transform: rotateY(315deg) translateZ(520px); }
+        
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: #1a1a1a;
+            border: 1px solid #333333;
+            color: #ffffff;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.4);
+        }
+        
+        .nav-btn:hover {
+            background: #2a2a2a;
+            transform: translateY(-50%) scale(1.15);
+            border-color: #555555;
+        }
+        
+        .nav-btn:active {
+            transform: translateY(-50%) scale(0.95);
+            background: #111111;
+        }
+        
+        .nav-left {
+            left: -120px;
+        }
+        
+        .nav-right {
+            right: -120px;
+        }
+        
+        .card-icon {
+            font-size: 3.5rem;
+            margin-bottom: 1.25rem;
+            color: #ffffff;
+            transition: transform 0.3s ease;
+        }
+        
+        .card:hover .card-icon {
+            transform: scale(1.1);
+        }
+        
+        .card-title {
+            font-size: 1.35rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 0.75rem;
+            text-shadow: none;
+        }
+        
+        .card-text {
+            color: rgba(200, 200, 200, 0.8);
+            line-height: 1.5;
+            text-shadow: none;
+            font-size: 0.95rem;
+        }
+        
+        .indicator {
+            position: absolute;
+            bottom: -60px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+        }
+        
+        .dot {
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.2);
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+            border: 1px solid rgba(255,255,255,0.3);
+            box-shadow: 0 2px 8px rgba(0,0,0,0.2);
+        }
+        
+        .dot.active {
+            background: #ffffff;
+            transform: scale(1.6);
+            border-color: #6366f1;
+            box-shadow: 0 0 15px rgba(99, 102, 241, 0.6);
+        }
+        
+        .controls-info {
+            position: absolute;
+            bottom: -120px;
+            left: 50%;
+            transform: translateX(-50%);
+            text-align: center;
+            color: rgba(255,255,255,0.7);
+            font-size: 0.9rem;
+        }
+
+        /* Depth classes for matte black */
+        .card.depth-far {
+            opacity: 0.2;
+            background: #080808;
+            border-color: #111111;
+        }
+        .card.depth-mid {
+            opacity: 0.5;
+            background: #090909;
+            border-color: #151515;
+        }
+        .card.depth-near {
+            opacity: 0.8;
+            background: #0a0a0a;
+            border-color: #1a1a1a;
+        }
+        .card.depth-front {
+            opacity: 1;
+            background: #0a0a0a;
+            border-color: #1a1a1a;
+        }
+    </style>
+</head>
+<body class="min-h-screen bg-gradient-to-br from-gray-950 via-gray-900 to-black flex flex-col items-center justify-center p-8 overflow-hidden">
+    <div class="text-center mb-8">
+        <h1 class="text-6xl font-thin text-gray-100 mb-4 tracking-wide">Orbital Navigator</h1>
+        <p class="text-xl text-gray-300">Double-sided rotation with ultra-smooth motion</p>
+    </div>
+    
+    <div class="orbit-container mb-12 relative">
+        <!-- Navigation Buttons -->
+        <button class="nav-btn nav-left" onclick="rotateLeft()" aria-label="Previous card">
+            ←
+        </button>
+        <button class="nav-btn nav-right" onclick="rotateRight()" aria-label="Next card">
+            →
+        </button>
+        
+        <div class="card-orbit" id="cardOrbit">
+            <div class="card">
+                <div class="card-icon">🚀</div>
+                <h3 class="card-title">Innovation</h3>
+                <p class="card-text">Pushing boundaries with cutting-edge technology and revolutionary ideas.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">💡</div>
+                <h3 class="card-title">Creativity</h3>
+                <p class="card-text">Transforming brilliant concepts into reality through imaginative thinking.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">Precision</h3>
+                <p class="card-text">Maintaining laser-sharp focus on goals with meticulous attention.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3 class="card-title">Energy</h3>
+                <p class="card-text">Bringing dynamic energy and unstoppable passion to every challenge.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">🌟</div>
+                <h3 class="card-title">Excellence</h3>
+                <p class="card-text">Striving for perfection in every interaction and creative endeavor.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">🎨</div>
+                <h3 class="card-title">Design</h3>
+                <p class="card-text">Crafting beautiful experiences that blend functionality with aesthetics.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">🔥</div>
+                <h3 class="card-title">Passion</h3>
+                <p class="card-text">Fueling every project with intense passion and dedication.</p>
+            </div>
+            
+            <div class="card">
+                <div class="card-icon">🏆</div>
+                <h3 class="card-title">Achievement</h3>
+                <p class="card-text">Celebrating victories and learning from every milestone reached.</p>
+            </div>
+        </div>
+        
+        <!-- Position Indicators -->
+        <div class="indicator" id="indicator">
+            <div class="dot active" onclick="goToCard(0)"></div>
+            <div class="dot" onclick="goToCard(1)"></div>
+            <div class="dot" onclick="goToCard(2)"></div>
+            <div class="dot" onclick="goToCard(3)"></div>
+            <div class="dot" onclick="goToCard(4)"></div>
+            <div class="dot" onclick="goToCard(5)"></div>
+            <div class="dot" onclick="goToCard(6)"></div>
+            <div class="dot" onclick="goToCard(7)"></div>
+        </div>
+        
+        <div class="controls-info">
+            <p class="text-gray-400">Click • Arrows • Wheel • Swipe • Hover for depth</p>
+        </div>
+    </div>
+
+    <script>
+        const cardOrbit = document.getElementById('cardOrbit');
+        const dots = document.querySelectorAll('.dot');
+        let currentRotation = 0;
+        let currentCard = 0;
+        const totalCards = 8;
+        const anglePerCard = 360 / totalCards;
+        let isRotating = false;
+        
+        function updateRotation() {
+            // Clean, smooth rotation with enhanced 3D effect
+            cardOrbit.style.transform = `rotateY(${currentRotation}deg)`;
+            
+            // Update each card with depth-based styling
+            const cards = document.querySelectorAll('.card');
+            cards.forEach((card, index) => {
+                const cardAngle = index * anglePerCard;
+                const totalRotation = currentRotation + cardAngle;
+                
+                // Calculate normalized angle (0-360)
+                let normalizedAngle = (totalRotation % 360 + 360) % 360;
+                
+                // Depth-based styling for matte effect
+                if (normalizedAngle > 90 && normalizedAngle < 270) {
+                    const relativeAngle = Math.abs(normalizedAngle - 180);
+                    if (relativeAngle > 60) {
+                        card.classList.remove('depth-front', 'depth-near', 'depth-mid');
+                        card.classList.add('depth-far');
+                    } else {
+                        card.classList.remove('depth-front', 'depth-near', 'depth-far');
+                        card.classList.add('depth-mid');
+                    }
+                } else if (normalizedAngle > 45 && normalizedAngle <= 90) {
+                    card.classList.remove('depth-front', 'depth-near', 'depth-far');
+                    card.classList.add('depth-mid');
+                } else if (normalizedAngle >= 315 || normalizedAngle < 45) {
+                    card.classList.remove('depth-mid', 'depth-far');
+                    card.classList.add('depth-front');
+                } else {
+                    card.classList.remove('depth-front', 'depth-far');
+                    card.classList.add('depth-near');
+                }
+                
+                // Final transform with correction
+                card.style.transform = `rotateY(${cardAngle}deg) translateZ(520px) rotateY(${-totalRotation}deg)`;
+            });
+            
+            updateIndicator();
+            
+            // Prevent rapid clicking
+            isRotating = true;
+            setTimeout(() => {
+                isRotating = false;
+            }, 3500); // Match enhanced transition duration
+        }
+        
+        function updateIndicator() {
+            dots.forEach((dot, index) => {
+                dot.classList.toggle('active', index === currentCard);
+            });
+        }
+        
+        function rotateLeft() {
+            if (isRotating) return;
+            currentRotation += anglePerCard;
+            currentCard = (currentCard - 1 + totalCards) % totalCards;
+            updateRotation();
+        }
+        
+        function rotateRight() {
+            if (isRotating) return;
+            currentRotation -= anglePerCard;
+            currentCard = (currentCard + 1) % totalCards;
+            updateRotation();
+        }
+        
+        function goToCard(cardIndex) {
+            if (isRotating) return;
+            const targetRotation = -cardIndex * anglePerCard;
+            currentRotation = targetRotation;
+            currentCard = cardIndex;
+            updateRotation();
+        }
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(e) {
+            if (isRotating) return;
+            if (e.key === 'ArrowLeft') {
+                rotateLeft();
+            } else if (e.key === 'ArrowRight') {
+                rotateRight();
+            }
+        });
+        
+        // Mouse wheel navigation
+        cardOrbit.addEventListener('wheel', function(e) {
+            e.preventDefault();
+            if (isRotating) return;
+            if (e.deltaY > 0) {
+                rotateRight();
+            } else {
+                rotateLeft();
+            }
+        }, { passive: false });
+        
+        // Touch/swipe support
+        let startX = 0;
+        let endX = 0;
+        
+        cardOrbit.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].clientX;
+        }, { passive: true });
+        
+        cardOrbit.addEventListener('touchend', function(e) {
+            if (isRotating) return;
+            endX = e.changedTouches[0].clientX;
+            const diff = startX - endX;
+            
+            if (Math.abs(diff) > 30) {
+                if (diff > 0) {
+                    rotateRight();
+                } else {
+                    rotateLeft();
+                }
+            }
+        }, { passive: true });
+        
+        // Click-to-rotate on card
+        document.querySelectorAll('.card').forEach((card, index) => {
+            card.addEventListener('click', function() {
+                if (isRotating) return;
+                const targetRotation = -index * anglePerCard;
+                currentRotation = targetRotation;
+                currentCard = index;
+                updateRotation();
+            });
+        });
+        
+        // Initialize
+        updateRotation();
+    </script>
+</body>
+</html>
