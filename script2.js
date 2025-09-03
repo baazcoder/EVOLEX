@@ -2,7 +2,7 @@
 if (typeof SafeStorage === 'undefined') {
     window.SafeStorage = {
         // Check if localStorage is available
-        isAvailable: function() {
+        isAvailable: function () {
             try {
                 const test = '__storage_test__';
                 localStorage.setItem(test, test);
@@ -12,9 +12,9 @@ if (typeof SafeStorage === 'undefined') {
                 return false;
             }
         },
-        
+
         // Get item with fallback
-        getItem: function(key, defaultValue = null) {
+        getItem: function (key, defaultValue = null) {
             if (this.isAvailable()) {
                 try {
                     return localStorage.getItem(key);
@@ -25,9 +25,9 @@ if (typeof SafeStorage === 'undefined') {
             }
             return defaultValue;
         },
-        
+
         // Set item with error handling
-        setItem: function(key, value) {
+        setItem: function (key, value) {
             if (this.isAvailable()) {
                 try {
                     localStorage.setItem(key, value);
@@ -39,9 +39,9 @@ if (typeof SafeStorage === 'undefined') {
             }
             return false;
         },
-        
+
         // Remove item
-        removeItem: function(key) {
+        removeItem: function (key) {
             if (this.isAvailable()) {
                 try {
                     localStorage.removeItem(key);
@@ -88,31 +88,31 @@ function updateThemeColor() {
 }
 
 
-  // === Theme Toggle ===
-  const toggleBtn = document.querySelector(".theme-toggle-btn");
+// === Theme Toggle ===
+const toggleBtn = document.querySelector(".theme-toggle-btn");
 
-  // Load saved theme from localStorage
-  const localTheme = localStorage.getItem("theme");
-  if (localTheme) {
+// Load saved theme from localStorage
+const localTheme = localStorage.getItem("theme");
+if (localTheme) {
     body.setAttribute("data-theme", localTheme);
     if (localTheme === "light") body.classList.add("light-theme");
-  }
+}
 
-  toggleBtn.addEventListener("click", () => {
+toggleBtn.addEventListener("click", () => {
     let currentTheme = body.getAttribute("data-theme");
 
     if (currentTheme === "light") {
-      // Switch to dark
-      body.setAttribute("data-theme", "dark");
-      body.classList.remove("light-theme");
-      localStorage.setItem("theme", "dark");
+        // Switch to dark
+        body.setAttribute("data-theme", "dark");
+        body.classList.remove("light-theme");
+        localStorage.setItem("theme", "dark");
     } else {
-      // Switch to light
-      body.setAttribute("data-theme", "light");
-      body.classList.add("light-theme");
-      localStorage.setItem("theme", "light");
+        // Switch to light
+        body.setAttribute("data-theme", "light");
+        body.classList.add("light-theme");
+        localStorage.setItem("theme", "light");
     }
-  });
+});
 
 
 // ===== Parallax Effect with performance optimization =====
@@ -129,7 +129,7 @@ function updateParallax() {
 document.addEventListener('mousemove', (e) => {
     mousePos.clientX = e.clientX;
     mousePos.clientY = e.clientY;
-    
+
     if (!ticking) {
         requestAnimationFrame(updateParallax);
         ticking = true;
@@ -142,7 +142,7 @@ let konamiIndex = 0;
 
 document.addEventListener('keydown', (e) => {
     // Prevent default for konami code keys to avoid page scrolling
-    if (konami.includes(e.key) || 
+    if (konami.includes(e.key) ||
         (konamiIndex > 0 && ['b', 'a'].includes(e.key.toLowerCase()))) {
         e.preventDefault();
     }
@@ -164,14 +164,14 @@ document.addEventListener('keydown', (e) => {
 function activateNeonMode() {
     currentThemeIndex = themes.indexOf('neon');
     body.setAttribute('data-theme', 'neon');
-    
+
     // Save preference if possible
     if (SafeStorage.setItem('preferred-theme', 'neon')) {
         console.log('Neon theme saved');
     } else {
         console.log('Theme preference will not be saved');
     }
-    
+
     updateThemeColor();
     createParticles(50);
     showHint('🎉 NEON MODE ACTIVATED!');
@@ -180,19 +180,19 @@ function activateNeonMode() {
 // ===== Click Sound with user preference =====
 let soundEnabled = SafeStorage.getItem('sound', 'on') !== 'off';
 
-themeToggle.setAttribute('aria-label', soundEnabled ? 
+themeToggle.setAttribute('aria-label', soundEnabled ?
     'Toggle theme and sound settings' : 'Toggle theme, sound disabled');
-    
+
 themeToggle.addEventListener('click', (e) => {
     if (e.detail === 3) { // Triple click disables sound
         soundEnabled = !soundEnabled;
-        
+
         // Save preference if possible
         if (SafeStorage.setItem('sound', soundEnabled ? 'on' : 'off')) {
             console.log('Sound preference saved');
         }
-        
-        themeToggle.setAttribute('aria-label', soundEnabled ? 
+
+        themeToggle.setAttribute('aria-label', soundEnabled ?
             'Toggle theme and sound settings' : 'Toggle theme, sound disabled');
         showHint(soundEnabled ? '🔊 Sound enabled' : '🔇 Sound disabled');
     }
@@ -210,11 +210,11 @@ try {
 
 document.addEventListener('click', (e) => {
     // Only play sound for interactive elements and if sound is enabled
-    if (soundEnabled && clickSound && 
+    if (soundEnabled && clickSound &&
         (e.target.matches('.cta-button, .theme-toggle, .main-title, .falling-text'))) {
         try {
             clickSound.currentTime = 0;
-            clickSound.play().catch(() => {});
+            clickSound.play().catch(() => { });
         } catch (e) {
             console.warn('Audio playback failed:', e);
         }
@@ -231,7 +231,7 @@ title.addEventListener('click', () => {
         clickCount = 0;
         showHint('💚 Matrix mode activated!');
     }
-    
+
     // Reset counter after 2 seconds of inactivity
     clearTimeout(title.clickTimeout);
     title.clickTimeout = setTimeout(() => { clickCount = 0; }, 2000);
@@ -264,7 +264,7 @@ function activateMatrix() {
         // Add semi-transparent layer for trail effect
         ctx.fillStyle = 'rgba(0, 0, 0, 0.05)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
-        
+
         ctx.fillStyle = '#0f0';
         ctx.font = fontSize + 'px monospace';
         ctx.textBaseline = 'top';
@@ -273,7 +273,7 @@ function activateMatrix() {
         for (let i = 0; i < drops.length; i++) {
             // Choose a random character
             const text = chars.charAt(Math.floor(Math.random() * chars.length));
-            
+
             // Leading character is brighter
             if (Math.random() > 0.975) {
                 ctx.fillStyle = '#fff';
@@ -282,16 +282,16 @@ function activateMatrix() {
             } else {
                 ctx.fillText(text, i * fontSize, drops[i] * fontSize);
             }
-            
+
             // Reset when drops reach bottom or randomly
             if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
                 drops[i] = 0;
             }
-            
+
             // Move drop down
             drops[i]++;
         }
-        
+
         frameCount++;
         if (frameCount < maxFrames) {
             animationId = requestAnimationFrame(draw);
@@ -304,7 +304,7 @@ function activateMatrix() {
 
     // Start animation
     animationId = requestAnimationFrame(draw);
-    
+
     // Allow early exit with ESC key
     function exitMatrix(e) {
         if (e.key === 'Escape') {
@@ -314,7 +314,7 @@ function activateMatrix() {
             showHint('Matrix mode deactivated');
         }
     }
-    
+
     document.addEventListener('keydown', exitMatrix);
 }
 
@@ -336,13 +336,13 @@ document.addEventListener('keydown', (e) => {
         } else {
             futureBuffer += e.key.toLowerCase();
         }
-        
+
         // Keep buffer at max 6 characters
         futureBuffer = futureBuffer.slice(-6);
-        
+
         if (futureBuffer === 'future') {
-            showModal('🎉 You found the secret!', 
-                      'The future is already here — keep exploring and discovering new possibilities.');
+            showModal('🎉 You found the secret!',
+                'The future is already here — keep exploring and discovering new possibilities.');
             futureBuffer = '';
         }
     }
@@ -352,7 +352,7 @@ document.addEventListener('keydown', (e) => {
 function showModal(title, message) {
     // Check if modal already exists
     if (document.getElementById('custom-modal')) return;
-    
+
     // Create modal elements
     const modal = document.createElement('div');
     modal.id = 'custom-modal';
@@ -371,7 +371,7 @@ function showModal(title, message) {
         z-index: 2000;
         padding: 2rem;
     `;
-    
+
     const modalContent = document.createElement('div');
     modalContent.style.cssText = `
         background: var(--bg);
@@ -384,17 +384,17 @@ function showModal(title, message) {
         position: relative;
         border: 1px solid rgba(255,255,255,0.1);
     `;
-    
+
     const titleEl = document.createElement('h2');
     titleEl.id = 'modal-title';
     titleEl.style.cssText = 'margin: 0 0 1rem 0; font-size: 1.5rem; color: var(--accent);';
     titleEl.textContent = title;
-    
+
     const descEl = document.createElement('p');
     descEl.id = 'modal-description';
     descEl.style.cssText = 'margin: 0 0 1.5rem 0; line-height: 1.6;';
     descEl.textContent = message;
-    
+
     const button = document.createElement('button');
     button.textContent = 'Close';
     button.style.cssText = `
@@ -409,17 +409,17 @@ function showModal(title, message) {
     button.addEventListener('click', () => {
         document.body.removeChild(modal);
     });
-    
+
     // Assemble modal
     modalContent.appendChild(titleEl);
     modalContent.appendChild(descEl);
     modalContent.appendChild(button);
     modal.appendChild(modalContent);
     document.body.appendChild(modal);
-    
+
     // Focus the button for accessibility
     setTimeout(() => button.focus(), 100);
-    
+
     // Allow closing with Escape key
     function closeModal(e) {
         if (e.key === 'Escape') {
@@ -428,7 +428,7 @@ function showModal(title, message) {
         }
     }
     document.addEventListener('keydown', closeModal);
-    
+
     // Clean up when modal is removed
     modal.addEventListener('animationend', () => {
         if (!document.body.contains(modal)) {
@@ -441,12 +441,12 @@ function showModal(title, message) {
 function showHint(message) {
     hint.textContent = message;
     hint.style.opacity = 1;
-    
+
     // Clear any existing timeout
     if (hint.timeoutId) {
         clearTimeout(hint.timeoutId);
     }
-    
+
     // Auto-hide after 3 seconds
     hint.timeoutId = setTimeout(() => {
         hint.style.opacity = 0;
@@ -459,7 +459,7 @@ function createParticles(count) {
     if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
         return;
     }
-    
+
     for (let i = 0; i < count; i++) {
         const p = document.createElement('div');
         p.style.cssText = `
@@ -476,7 +476,7 @@ function createParticles(count) {
             filter: drop-shadow(0 0 2px rgba(255,255,255,0.5));
         `;
         document.body.appendChild(p);
-        
+
         // Clean up after animation completes
         setTimeout(() => {
             if (p && p.parentNode) {
@@ -513,7 +513,7 @@ document.addEventListener('DOMContentLoaded', () => {
     setTimeout(() => {
         const leftElements = document.querySelector('.left-content').children;
         for (let i = 0; i < leftElements.length; i++) {
-            if (leftElements[i].classList.contains('main-title') || 
+            if (leftElements[i].classList.contains('main-title') ||
                 leftElements[i].classList.contains('subtitle') ||
                 leftElements[i].id === 'cta') {
                 leftElements[i].style.animation = 'revealText 0.6s ease forwards';
@@ -521,7 +521,7 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         }
     }, 100);
-    
+
     // Show initial hint
     showHint('Try typing "future" or ↑↑↓↓←→←→BA');
 });
